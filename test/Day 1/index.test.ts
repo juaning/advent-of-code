@@ -1,5 +1,10 @@
-import { getNumberFromLinePart1 } from "../../src/Day 1";
+import { getNumberFromLinePart1, part1 } from "../../src/Day 1";
 
+jest.mock("../../src/utils", () => ({
+  fileReader: jest
+    .fn()
+    .mockResolvedValue(["1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"]),
+}));
 describe("Day 1", () => {
   describe("getNumberFromLinePart1", () => {
     it("'1abc2' should return 12", () => {
@@ -13,6 +18,11 @@ describe("Day 1", () => {
     });
     it("'treb7uchet' should return 77", () => {
       expect(getNumberFromLinePart1("treb7uchet")).toEqual(77);
+    });
+  });
+  describe("part1", () => {
+    it("should return 142", () => {
+      expect(part1()).resolves.toBe(142);
     });
   });
 });
